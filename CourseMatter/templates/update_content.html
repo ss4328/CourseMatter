@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% block title %} Update Content {% endblock %}
+{% block content %}
+    {% load static %}
+
+    {% block header %} {% include 'header.html' %} {% endblock header %}
+
+    <div class="container" style="position: center; padding: 100px; vertical-align: middle;">
+        <h2>Update Content</h2>
+        <div class = "form-group">
+            <form method="POST">
+                {% csrf_token %}
+                {{form.as_p}}
+                <button type="submit" class="btn">Update</button>
+    {#            <input type="submit" value="Register">#}
+            </form>
+        </div>
+
+    </div>
+{% endblock %}

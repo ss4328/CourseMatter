@@ -1,0 +1,24 @@
+{% extends 'base.html' %} {% block content %}
+    {% load static %}
+    {% load markdownify %}
+
+    {% block header %} {% include 'header.html' %} {% endblock header %}
+
+    <div class="container-fluid">
+        <div class="col-md-8 offset-md-2 maincontainer">
+            <h1 class="post_detail">
+                {% block title %} {{ object.title }} {% endblock title %}
+            </h1>
+            <p class="text-muted"><img class = "detail_icon" src="{% static 'icons/account_circle-24px.svg' %}" alt="Avatar" >{{ content.author }} | <img class = "detail_icon" src="{% static 'icons/calendar_today-24px.svg' %}" alt="Avatar" >{{ content.created_on }}</p>
+            <hr>
+            <p class="card-text">{{ object.content | markdownify }}</p>
+            {% if user.is_authenticated %}
+                {% if user.id == content.author.id%}
+                <a href = "{% url 'update_post' post.pk %}">(Edit)</a>
+        {% endif %}
+        {% endif %}
+
+        </div>
+    </div>
+
+{% endblock content %}

@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -38,6 +39,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'taggit',
+    'content',
+    'django_countries',
+    'markdownify',
 ]
 
 MIDDLEWARE = [
@@ -51,11 +56,12 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'CourseMatter.urls'
+TEMPLATES_DIR = os.path.join(BASE_DIR,'templates')
 
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [TEMPLATES_DIR],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -114,6 +120,8 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+AUTH_PROFILE_MODULE = 'accounts.Profile'
+
 
 
 # Internationalization
@@ -134,10 +142,65 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+    BASE_DIR / "static"
+]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
-LOGIN_REDIRECT_URL = "dashboard"
-LOGOUT_REDIRECT_URL = "dashboard"
+LOGIN_REDIRECT_URL = "/"
+LOGOUT_REDIRECT_URL = "/"
+
+
+
+MARKDOWNIFY = {
+    "default": {
+        "MARKDOWN_EXTENSIONS": [
+            'markdown.extensions.fenced_code',
+            'markdown.extensions.extra',
+            'markdown.extensions.codehilite',
+        ],
+        "WHITELIST_STYLES": [
+            'color',
+            'font-weight',
+        ],
+        "WHITELIST_TAGS": [
+            'code',
+            'pre',
+            'span',
+            'div',
+            'a',
+            'abbr',
+            'acronym',
+            'b',
+            'blockquote',
+            'em',
+            'i',
+            'li',
+            'ol',
+            'p',
+            'strong',
+            'ul',
+            'h1',
+            'h2',
+            'h3',
+            'h4',
+            'h5',
+            'img',
+        ],
+        "WHITELIST_ATTRS": [
+            'class',
+            'href',
+            'src',
+            'alt',
+            ],
+        "WHITELIST_PROTOCOL": [
+            'http',
+            'https',
+        ],
+        "BLEACH": False
+    }
+}

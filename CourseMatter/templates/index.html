@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+{% block content %}
+{% load static %}
+    {% load markdownify %}
+    <header>
+        {% block header %} {% include 'header.html' %} {% endblock header %}
+
+      <!-- Background image -->
+      <div class="p-5 text-center bg-image banner-img">
+        <div class="mask">
+          <div class="d-flex justify-content-center align-items-center">
+            <div class="" style="color: #1b1b1b">
+              <h1 class="mb-3">Home Page</h1>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Background image -->
+    </header>
+
+
+    <div class="container">
+        <div class="row">
+            <!-- Blog Entries Column -->
+            <div class="col-md-8 mt-3 left">
+                {% for content in content_list %}
+                <div class="card mb-4">
+                    <div class="card-body">
+                        <h2 class="card-title">{{ content.title }}</h2>
+                        <p class="card-text text-muted h6">{{ content.author }} | {{ content.created_on}} </p>
+                        <p class="card-text text-muted h6"> {% for tag in content.tags.all %} <a href="{% url 'content_by_tag' tag.slug %}"> {{ tag.name }}</a> {% endfor %}</p>
+                        <p class="card-text">{{content.content|slice:":200"| markdownify | safe }}</p>
+                        <a href="{% url 'content_detail' content.slug  %}" class="btn btn-primary">Read More &rarr;</a>
+                        <a href="{% url 'edit_content' content.slug %}">Edit</a>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            {% block sidebar %} {% include 'sidebar.html' %} {% endblock sidebar %}
+        </div>
+    </div>
+
+    {% if is_paginated %}
+        <nav aria-label="Page navigation conatiner"></nav>
+            <ul class="pagination justify-content-center">
+                {% if page_obj.has_previous %}
+                    <li><a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; PREV </a></li>
+                    {% endif %}
+                    {% if page_obj.has_next %}
+                    <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo;</a></li>
+
+                {% endif %}
+            </ul>
+        </nav>
+    </div>
+    {% endif %}
+
+{%endblock%}

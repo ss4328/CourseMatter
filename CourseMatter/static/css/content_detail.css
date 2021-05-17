@@ -1,0 +1,14 @@
+.post_detail {
+    flex-direction: column;
+    justify-content: left;
+    text-align: left;
+}
+
+.detail_icon {
+    max-width: 25px;
+    padding-right: 4px;
+}
+
+.maincontainer{
+    padding: 5vw;
+}

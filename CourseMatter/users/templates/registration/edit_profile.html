@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% block title %}Edit Profile{% endblock %}
 {% block content %}
     {% load static %}
     {% load markdownify %}
@@ -6,13 +7,14 @@
     {% block header %} {% include 'header.html' %} {% endblock header %}
 
     <div class="container" style="position: center; padding: 100px; vertical-align: middle;">
-        <div>
-            {% if user.is_authenticated %}
-                <a href="{% url 'logout' %}">Logout</a>
-                <a href="{% url 'password_change' %}">Change password</a>
-            {% else %}
-                <a href="{% url 'login' %}">Login</a>
-            {% endif %}
+        <h1>Edit Profile</h1>
+        <div class="form-group">
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit" class="btn">Update</button>
+            </form>
         </div>
+
     </div>
 {% endblock %}

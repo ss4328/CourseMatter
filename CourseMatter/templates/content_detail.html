@@ -10,13 +10,15 @@
                 {% block title %} {{ object.title }} {% endblock title %}
             </h1>
             <p class="text-muted"><img class = "detail_icon" src="{% static 'icons/account_circle-24px.svg' %}" alt="Avatar" >{{ content.author }} | <img class = "detail_icon" src="{% static 'icons/calendar_today-24px.svg' %}" alt="Avatar" >{{ content.created_on }}</p>
-            <hr>
-            <p class="card-text">{{ object.content | markdownify }}</p>
             {% if user.is_authenticated %}
                 {% if user.id == content.author.id%}
-                <a href = "{% url 'update_post' post.pk %}">(Edit)</a>
-        {% endif %}
-        {% endif %}
+                    <a href="{% url 'edit_content' content.slug %}">Edit</a>
+                    <a href="{% url 'delete_content' content.slug %}">Delete</a>
+                {% endif %}
+            {% endif %}
+            <hr>
+            <p class="card-text">{{ object.content | markdownify }}</p>
+
 
         </div>
     </div>

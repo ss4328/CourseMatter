@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+{% block title %} Delete Content {% endblock %}
+{% block content %}
+    {% load static %}
+
+    {% block header %} {% include 'header.html' %} {% endblock header %}
+
+    <div class="container" style="position: center; padding: 100px; vertical-align: middle;">
+        <h2>Delete Content</h2>
+
+        <form method="post">
+            {% csrf_token %}
+            <strong>Are you sure?</strong><br>
+            <button type="submit" class="btn">Delete Content</button>
+{#            <input type="submit" value="Register">#}
+        </form>
+
+    </div>
+{% endblock %}

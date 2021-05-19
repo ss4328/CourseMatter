@@ -28,8 +28,8 @@
                     <div class="card-body">
                         <h2 class="card-title">{{ content.title }}</h2>
                         <p class="card-text text-muted h6">{{ content.author }} | {{ content.created_on}} </p>
-                        <p class="card-text text-muted h6"> {% for tag in content.tags.all %} <a href="{% url 'content_by_tag' tag.slug %}"> {{ tag.name }}</a> {% endfor %}</p>
-                        <p class="card-text">{{content.content|slice:":200"| markdownify | safe }}</p>
+                        <p class="card-text text-muted h6">Tags: {% for tag in content.tags.all %} <a href="{% url 'content_by_tag' tag.slug %}"> {{ tag.name }}</a> {% endfor %}</p>
+                        <p class="card-text">{{content.bio|slice:":200"| markdownify | safe }}</p>
                         <a href="{% url 'content_detail' content.slug  %}" class="btn btn-primary">Read More &rarr;</a>
                         {% if user.is_authenticated %}
                             {% if user.id == content.author.id%}

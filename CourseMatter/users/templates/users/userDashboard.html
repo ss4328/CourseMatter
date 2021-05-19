@@ -8,8 +8,9 @@
     <div class="container" style="position: center; padding: 100px; vertical-align: middle;">
         <div>
             {% if user.is_authenticated %}
-                <a href="{% url 'logout' %}">Logout</a>
-                <a href="{% url 'password_change' %}">Change password</a>
+                <a href="{% url 'logout' %}">Logout</a><br>
+                <a href="{% url 'password_change' %}">Change password</a><br>
+                <a href="{% url 'edit_profile' %}">Edit Profile</a><br>
             {% else %}
                 <a href="{% url 'login' %}">Login</a>
             {% endif %}

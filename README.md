@@ -24,13 +24,13 @@ source <repo name>/bin/activate
 Set up the repo:
 ```bash
 git clone https://github.com/ss4328/CourseMatter.git
-pip install requirements.txt 
-cd django_portfolio_blog
+pip install -m requirements.txt 
+cd CourseMatter
 python manage.py runserver
 # => Starting development server at http://127.0.0.1:8000/
 ```
 ### 2. Configuration
-All settings are managed via django_portfolio_blog/settings.py
+All settings are managed via CourseMatter/settings.py
 - [Markdownify's flag settings](https://github.com/matthewwithanm/python-markdownify)
 - Static File Directories (Set up in STATIC_URL variable)
 - To make DB migrations, 

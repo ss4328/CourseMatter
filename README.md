@@ -89,6 +89,26 @@ heroku python manage.py migrate
 Optionally now you could do some simple DNS Setup if you've a custom domain.
 
 
+## Demo
+
+![img](https://i.postimg.cc/NLHLT5PM/content-detail.png)
+
+![img](https://i.postimg.cc/4YJ3rw47/course-detail.png)
+
+![img](https://i.postimg.cc/F7bRWwvX/dashboard.png)
+
+![img](https://i.postimg.cc/qtqv7R3p/edit-Profile.png)
+
+![img](https://i.postimg.cc/67P54Xrn/home1.png)
+
+![img](https://i.postimg.cc/jwJqzFc9/home2.png)
+
+![img](https://i.postimg.cc/ykCxTswT/login.png)
+
+![img](https://i.postimg.cc/18JzP64W/tag-view.png)
+
+
+
 ## Tech Stack
 - I used Django for Back-end for the following reasons:
     - Allows integrated admin panel to save development time

@@ -91,21 +91,31 @@ Optionally now you could do some simple DNS Setup if you've a custom domain.
 
 ## Demo
 
-![img](https://i.postimg.cc/NLHLT5PM/content-detail.png)
+Home Page
+![img](https://i.postimg.cc/LX9q74hC/home1.png)
 
-![img](https://i.postimg.cc/4YJ3rw47/course-detail.png)
+![img](https://i.postimg.cc/JnpyWwk1/home2.png)
 
-![img](https://i.postimg.cc/F7bRWwvX/dashboard.png)
+admin panel
+![admin](https://i.postimg.cc/RVL0rx52/admin.png)
 
-![img](https://i.postimg.cc/qtqv7R3p/edit-Profile.png)
+content-detail
+![img](https://i.postimg.cc/v8PnJnrW/content-detail.png)
 
-![img](https://i.postimg.cc/67P54Xrn/home1.png)
+course-detail
+![img](https://i.postimg.cc/dVCTZSzB/course-detail.png)
 
-![img](https://i.postimg.cc/jwJqzFc9/home2.png)
+dashboard
+![img](https://i.postimg.cc/L6w1XM05/dashboard.png)
 
-![img](https://i.postimg.cc/ykCxTswT/login.png)
+edit-Profile
+![img](https://i.postimg.cc/25Fb2LjL/edit-Profile.png)
 
-![img](https://i.postimg.cc/18JzP64W/tag-view.png)
+login/Signup
+![img](https://i.postimg.cc/MKvBqG5g/login.png)
+
+tag-view
+![img](https://i.postimg.cc/Xv0BfkW0/tag-view.png)
 
 
 

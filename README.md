@@ -17,7 +17,7 @@ Django Web-App for managing courses/users. BlogMatter takes your Markdown Conten
 ### 1. Set up the repo
 You could also leverage a virtual environment (Highly recommended)
 ```bash
-python3 -m venv <repo name>
+python3 -r venv <repo name>
 source <repo name>/bin/activate
 ```
 
@@ -58,7 +58,6 @@ Note: I used admin, admin as user,password for simplicity. You can try to log in
 ### 4. Browsing by tags
 After creating some a content object (manually you can navigate to /add_content), you can click on the tag and then navigate to all the posts available for the tag.
 
-## Demo
 
 ## Hosting
 I think the easiest option to go along is to host on Heroku. Why?
@@ -162,6 +161,32 @@ For all purposes, Author is just an alias for a teacher
     - Allows for later features to filter users
 - one-to-many Course-to-Content. Allows very fast lookup for content for a course.
 - PostGreSQL (read tech-stack section)
+
+
+## Sample Workflow to test features
+- Log in as Admin
+    - test if the admin,admin credentials work or create new superuser
+- Register several users: A,B,C,D
+- Log in to django admin panel
+    - Go to usergroups
+        - Assign A,B as teachers
+    - (Don't assign C,D in teacherGroup)
+- Now dashboard accessible from top-right menu for A,B (but not for C,D)
+- You can now add content and courses for C,D along with Tags 
+
+Verification
+- Tags show up as categories on the sidebar
+- Courses show up on homepage and courseView
+- Content Show up on the assigned Courses
+- Edit/Delete buttons are only available for authenticated teachers on their own content and dashboard is invisible for students.  
+
+Bug Alert!
+- You've to add atleast one content in a course to allow django to display its attributes on the course page
+    - Easily fixable by passing course context data in a context dictionary as done in the homepage
+    - Left bug for time constraints
+
+
+    
 
 ## Areas for Improvement
 #### Front-End

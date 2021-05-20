@@ -2,17 +2,26 @@
 {% block content %}
     {% load static %}
     {% load markdownify %}
+    {% load has_group %}
 
     {% block header %} {% include 'header.html' %} {% endblock header %}
 
     <div class="container" style="position: center; padding: 100px; vertical-align: middle;">
         <div>
             {% if user.is_authenticated %}
-                <a href="{% url 'logout' %}">Logout</a><br>
-                <a href="{% url 'password_change' %}">Change password</a><br>
-                <a href="{% url 'edit_profile' %}">Edit Profile</a><br>
-            {% else %}
-                <a href="{% url 'login' %}">Login</a>
+                {% if request.user|has_group:"teacherGroup" %}
+                    <h2>My Content</h2>
+                    <a href="/content/add">Create New Content</a><br>
+                    <a href = "{% url 'content_by_author' user.id %}">Edit/Delete Content</a><br>
+
+                    <h2>My Courses</h2>
+                    <a href="/course/add">Create New Course</a><br>
+                    <a href = "{% url 'content_by_author' user.id %}">Edit/Delete Course</a><br>
+                {% else %}
+                    <p>Please study enough to become a teacher :))</p>
+                {% endif %}
+
+
             {% endif %}
         </div>
     </div>

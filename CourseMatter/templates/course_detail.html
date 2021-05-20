@@ -10,7 +10,7 @@
   <meta name="description" content="">
   <meta name="author" content="">
 
-  <title>Tag View</title>
+  <title>Course View</title>
 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
             crossorigin="anonymous" />
@@ -39,6 +39,16 @@
       <li class="breadcrumb-item active">Tag View</li>
     </ol>
 
+    <h3>{{content_list.0.course.title}}</h3>
+    <p>{{content_list.0.course.summary}}</p>
+    {% if user.is_authenticated %}
+        {% if user.id == content_list.0.course.author.id%}
+            <a href="{% url 'edit_course' content_list.0.course.slug %}">Edit Course</a><br>
+            <a href="{% url 'delete_course' content_list.0.course.slug %}">Delete Course</a><br>
+        {% endif %}
+    {% endif %}
+    <br>
+
     {% for content in content_list %}
         <div class="row">
             <div class="col-md-7">
@@ -52,6 +62,12 @@
                 <p class="card-text text-muted h6"> {% for tag in post.tags.all %} <a href="{% url 'content_by_tag' tag.slug %}"> {{ tag.name }}</a> {% endfor %}</p>
                 <p class="card-text">{{content.content|slice:":200"| markdownify | safe }}</p>
                 <a class="btn btn-primary" href="{% url 'content_detail' content.slug %}" >Read More &rarr; <span class="glyphicon glyphicon-chevron-right"></span></a>
+                {% if user.is_authenticated %}
+                    {% if user.id == content.author.id%}
+                        <a href="{% url 'edit_content' content.slug %}">Edit</a>
+                        <a href="{% url 'delete_content' content.slug %}">Delete</a>
+                    {% endif %}
+                {% endif %}
             </div>
         </div>
         <hr>

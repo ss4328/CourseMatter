@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'content',
     'django_countries',
     'markdownify',
+    'CourseMatter.templatetags.has_group'
 ]
 
 MIDDLEWARE = [
@@ -70,6 +71,10 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+            'libraries':{
+                'has_group': 'CourseMatter.templatetags.has_group',
+
+            }
         },
     },
 ]

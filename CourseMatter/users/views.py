@@ -48,4 +48,3 @@ class UserEditView(generic.CreateView):
     success_url = reverse_lazy('home')
 
 
-

@@ -10,9 +10,16 @@
 <!-- Sidebar Widgets Column -->
 <div class="col-md-4 float-right ">
 <div class="card my-4">
-        <h5 class="card-header">About</h5>
+    <h5 class="card-header">Browse</h5>
     <div class="card-body">
-        <p class="card-text"> This an open source course management system with Django & PostGreSQL. Follow the github link on the footer to contribute & learn more! </p>
+
+        <h5>Categories</h5>
+        {% for tag in tags %}
+            <a href="{% url 'content_by_tag' tag.slug %}"> {{ tag.name }}</a><br>
+        {% endfor %}
+
+        <br>
+
         <a href="https://github.com/ss4328/CourseMatter"
            class="btn black-button"><i class="fab fa-github"></i> github</a>
     </div>

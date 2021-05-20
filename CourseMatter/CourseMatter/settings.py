@@ -12,6 +12,14 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 
 from pathlib import Path
 import os
+import django_heroku
+import dj_database_url
+import dotenv
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+dotenv_file = os.path.join(BASE_DIR, ".env")
+if os.path.isfile(dotenv_file):
+    dotenv.load_dotenv(dotenv_file)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -54,10 +62,16 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'CourseMatter.urls'
 TEMPLATES_DIR = os.path.join(BASE_DIR,'templates')
+
+## Dynamic switching for a postGreSQL on heroku
+WSGI_APPLICATION = 'CourseMatter.wsgi.application'
+DATABASES = {}
+DATABASES['default'] = dj_database_url.config(conn_max_age=600)
 
 TEMPLATES = [
     {
@@ -94,7 +108,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-WSGI_APPLICATION = 'CourseMatter.wsgi.application'
 
 
 # Database
@@ -209,3 +222,9 @@ MARKDOWNIFY = {
         "BLEACH": False
     }
 }
+
+
+django_heroku.settings(locals())
+#The idea here is to clear the DATABASES variable and then set the 'default' key using the dj_database_url module. This module uses Heroku’s DATABASE_URL variable if it’s on Heroku, or it uses the DATABASE_URL we set in the .env file if we’re working locally.
+options = DATABASES['default'].get('OPTIONS', {})
+options.pop('sslmode', None)

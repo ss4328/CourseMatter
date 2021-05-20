@@ -22,7 +22,3 @@ urlpatterns = [
     path('content/author/<int:author_id>', views.AuthorContentListView.as_view(), name='content_by_author'),
 
 ]
-
-
-#todo:
-#<a href="{% url 'subscribe' user=article.author.id %}">

@@ -5,13 +5,14 @@ from django.views import generic
 from .forms import CustomUserCreationForm, CustomUserChangeForm
 from django.contrib.auth.forms import UserChangeForm, UserCreationForm
 
-# Create your views here.
 
+# Create your views here.
 
 
 def dashboard(request):
     return render(request, "users/userDashboard.html")
-#
+
+
 # def register(request):
 #     if request.method == "GET":
 #         return render(
@@ -31,10 +32,6 @@ def dashboard(request):
 #     success_url = reverse_lazy('home')
 
 
-
-
-
-
 class UserRegisterView(generic.CreateView):
     # form_class = UserCreationForm
     form_class = CustomUserCreationForm
@@ -46,5 +43,3 @@ class UserEditView(generic.CreateView):
     form_class = UserChangeForm
     template_name = 'registration/edit_profile.html'
     success_url = reverse_lazy('home')
-
-

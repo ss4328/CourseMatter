@@ -18,6 +18,10 @@ class Course(models.Model):
         ordering = ['-created_on']
     def __str__(self):
         return self.title
+    def get_absolute_url(self):
+        cur_slug = ''.join(list(self.slug))
+        print(cur_slug)
+        return reverse('course_detail', kwargs={'course_slug':cur_slug})
 
 class Content(models.Model):
     title = models.CharField(max_length=200, unique=True)
